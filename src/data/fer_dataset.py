@@ -93,7 +93,7 @@ class ImageDatasetExplorer:
             if image_files:
                 rndm_img_file=random.choice(image_files)
                 rndm_img_path=os.path.join(class_path,rndm_img_file)
-                sample_images.append((rndm_img_file,rndm_img_path))
+                sample_images.append((class_name,rndm_img_path))
             else:
                 print(f"No image in the class folder named {class_name}")
 
