@@ -79,3 +79,7 @@ class ImageDatasetExplorer:
         else:
             plt.show()
             print("\nPlot displayed.")
+
+    def show_some_random_data_samples(self):
+
+        # Implement later on
