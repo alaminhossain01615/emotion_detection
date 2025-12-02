@@ -1,6 +1,8 @@
 import numpy as np
 import os
 import matplotlib.pyplot as plt
+import random
+from PIL import Image
 
 class ImageDatasetExplorer:
 
@@ -79,3 +81,35 @@ class ImageDatasetExplorer:
         else:
             plt.show()
             print("\nPlot displayed.")
+
+    def display_some_random_samples(self):
+        
+        sample_images=[]
+
+        for class_name in self.class_names:
+            class_path = os.path.join(self.root_dir,class_name)
+            image_files=[file for file in os.listdir(class_path) if file.lower().endswith(self.image_extensions)]
+
+            if image_files:
+                rndm_img_file=random.choice(image_files)
+                rndm_img_path=os.path.join(class_path,rndm_img_file)
+                sample_images.append((rndm_img_file,rndm_img_path))
+            else:
+                print(f"No image in the class folder named {class_name}")
+
+        if not sample_images:
+            print(f"No images found")
+
+        grid_cols=min(len(sample_images),4)
+        grid_rows=int(np.ceil(len(sample_images)/grid_cols))
+
+        plt.figure(figsize=(3*grid_cols, 3*grid_rows))
+
+        for i,(class_name,image_path) in enumerate(sample_images):
+            img=Image.open(image_path)
+            sp = plt.subplot(grid_rows,grid_cols,i+1)
+            sp.imshow(img)
+            sp.set_title(class_name, fontsize=12)
+            sp.axis("off")
+
+        plt.show()
