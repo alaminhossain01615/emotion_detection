@@ -106,7 +106,7 @@ class ImageDatasetExplorer:
         plt.figure(figsize=(3*grid_cols, 3*grid_rows))
 
         for i,(class_name,image_path) in enumerate(sample_images):
-            img=Image.open(image_path)
+            img=Image.open(image_path).convert("RGB")
             sp = plt.subplot(grid_rows,grid_cols,i+1)
             sp.imshow(img)
             sp.set_title(class_name, fontsize=12)
