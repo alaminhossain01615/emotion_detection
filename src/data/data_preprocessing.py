@@ -61,7 +61,7 @@ class DataPreprocessing:
         if plot_original_vs_augmented == 1:
             plt.figure(figsize=(10, 4))
             transforms = [v2.ToImage()]     
-            dataset=ImageFolder(DATASET_DIR,transform=None)
+            dataset=ImageFolder(DATASET_DIR,transform=transforms)
             indices = random.sample(range(len(dataset)), num_examples)
             for i, idx in enumerate(indices):
                 original_img, label = dataset[idx]
