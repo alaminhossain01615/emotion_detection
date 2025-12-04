@@ -60,7 +60,7 @@ class DataPreprocessing:
 
         if plot_original_vs_augmented == 1:
             plt.figure(figsize=(10, 4))
-            transforms = [v2.ToImage()]     
+            transforms = [v2.ToImage(),v2.ToDtype(torch.float32, scale=True)]     
             dataset=ImageFolder(DATASET_DIR,transform=transforms)
             indices = random.sample(range(len(dataset)), num_examples)
             for i, idx in enumerate(indices):
