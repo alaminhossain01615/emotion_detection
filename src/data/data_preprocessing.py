@@ -56,7 +56,7 @@ class DataPreprocessing:
         else:
             transforms=list_of_transform_pipeline
 
-        transformations=v2.compose(transforms)
+        transformations=v2.Compose(transforms)
 
         if plot_original_vs_augmented == 1:
             plt.figure(figsize=(10, 4))
