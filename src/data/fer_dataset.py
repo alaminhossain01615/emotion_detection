@@ -13,7 +13,6 @@ class ImageDatasetExplorer:
         self.image_extensions = ('.jpg', '.jpeg', '.png', '.bmp', '.tiff', '.webp')
 
     def explore_data(self):
-        # Get all subdirectories (which we assume are the classes)
         all_entries = os.listdir(self.root_dir)
         self.class_names = sorted([
             name for name in all_entries 
@@ -33,7 +32,6 @@ class ImageDatasetExplorer:
                 if filename.lower().endswith(self.image_extensions):
                     count += 1
             self.class_counts[class_name] = count
-        print("Data exploration complete.")
         self.print_summary()
 
     def print_summary(self):
@@ -61,8 +59,6 @@ class ImageDatasetExplorer:
         plt.figure(figsize=(12, 6))
         bars = plt.bar(classes, counts, color='skyblue') 
         
-
-        # Add counts on top of the bars for clarity
         for bar in bars:
             yval = bar.get_height()
             plt.text(bar.get_x() + bar.get_width()/2, yval + 10, int(yval), 
@@ -71,7 +67,7 @@ class ImageDatasetExplorer:
         plt.title('Image Count Distribution by Class', fontsize=16)
         plt.xlabel('Class Name', fontsize=12)
         plt.ylabel('Number of Images', fontsize=12)
-        plt.xticks(rotation=45, ha='right') # Rotate labels for better readability
+        plt.xticks(rotation=45, ha='right')
         plt.grid(axis='y', linestyle='--', alpha=0.7)
         plt.tight_layout()
 
