@@ -84,7 +84,7 @@ class DataPreprocessing:
         if std is None:
             std=self.std
         img = tensor_img.clone()
-        print(tensor_img.size())
+        #print(tensor_img.size())
         if unnormalize:
             img=img * std[:, None, None] + mean[:, None, None]
             img = img.clamp(0, 1)
