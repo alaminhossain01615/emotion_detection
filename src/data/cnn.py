@@ -1,7 +1,7 @@
 import torch
 from torch import nn
 
-class MLP_network(nn.Module):
+class CNN_network(nn.Module):
     def __init__(self,input_size=48*48,num_classes=7):
         super().__init__()
         self.conv1=nn.Conv2d(in_channels=1,out_channels=32,kernel_size=3,padding=1)
