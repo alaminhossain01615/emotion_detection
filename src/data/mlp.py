@@ -17,7 +17,7 @@ class MLP_network(nn.Module):
         self.fc3=nn.Linear(256,num_classes)
 
     def forward(self, x):
-        x=self.flatten(x) #(batch_size,1,48,48)
+        x=self.flatten(x,1) #(batch_size,1,48,48)
 
         #now shape will be (batch_size, 48*48)
 
