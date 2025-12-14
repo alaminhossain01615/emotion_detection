@@ -74,7 +74,7 @@ class Training:
 
             if test_loss < best_test_loss:
                 best_test_loss = test_loss
-                torch.save(self.model.state_dict(),'model_weights.pth')
+                torch.save(self.model.state_dict(),self.save_path)
 
             print(f'Epoch {epoch} --- train_loss {train_loss}, train_acc {train_acc} --- test_loss {test_loss}, test_acc {test_acc}')
         return self.history
