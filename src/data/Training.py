@@ -64,8 +64,8 @@ class Training:
     def train_model(self,train_data,test_data,epochs):
         for epoch in range(1,epochs+1):
             print("---Training----")
-            train_loss, train_acc = self.train_one_epoch(self.model,train_data,self.loss_func,self.optimizer)
-            test_loss, test_acc = self.validate_model(self.model,test_data,self.loss_func)
+            train_loss, train_acc = self.train_one_epoch(train_data)
+            test_loss, test_acc = self.validate_model(test_data)
 
             self.history['train_loss'].append(train_loss)
             self.history['train_acc'].append(train_acc)
