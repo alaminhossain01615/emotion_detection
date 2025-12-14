@@ -72,8 +72,8 @@ class Training:
             self.history['test_loss'].append(test_loss)
             self.history['test_acc'].append(test_acc)
 
-            if test_loss < best_test_loss:
-                best_test_loss = test_loss
+            if test_loss < self.best_test_loss:
+                self.best_test_loss = test_loss
                 torch.save(self.model.state_dict(),self.save_path)
 
             print(f'Epoch {epoch} --- train_loss {train_loss}, train_acc {train_acc} --- test_loss {test_loss}, test_acc {test_acc}')
