@@ -93,25 +93,3 @@ class DataPreprocessing:
         if title:
             plt.title(title)
         plt.axis('off')
-
-    # def plot_original_vs_augmented_examples(self,num_examples=5,DATASET_DIR=None,list_of_transform_pipeline=[]):
-    #     plt.figure(figsize=(10, 4))
-    #     if DATASET_DIR is None:
-    #         DATASET_DIR=self.root_dir
-    #     transforms = [v2.ToImage()]
-        
-    #     dataset=ImageFolder(DATASET_DIR,transform=None)
-    #     transformations=self.augment_and_transform_data()
-    #     indices = random.sample(range(len(dataset)), num_examples)
-    #     for i, idx in enumerate(indices):
-    #         original_img, label = dataset[idx]
-    #         augmented_img = train_transform(original_img)
-
-    #         plt.subplot(2, num_examples, i + 1)
-    #         self.show_image(original_img, title=f"Original {label}",unnormalize=False)
-
-    #         plt.subplot(2, num_examples, i + 1 + num_examples)
-    #         self.show_image(augmented_img, title=f"Augmented {label}")
-
-    #     plt.tight_layout()
-    #     plt.show()
