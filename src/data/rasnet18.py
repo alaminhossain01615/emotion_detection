@@ -3,9 +3,8 @@ import torch.nn as nn
 from torchvision import models
 
 class Rasnet18:
-    def __init__(self,input_channels=1,num_classes=7):
-        self.input_channels=input_channels
-        self.num_classes=num_classes
+    def __init__(self):
+        pass
 
     def get_custom_rasnet(self,input_channels=1,num_classes=7,use_pretrained=1):
         if use_pretrained:
