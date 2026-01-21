@@ -62,11 +62,11 @@ class ImageDatasetExplorer:
         for bar in bars:
             yval = bar.get_height()
             plt.text(bar.get_x() + bar.get_width()/2, yval + 10, int(yval), 
-                     ha='center', va='bottom', fontsize=10)
+                     ha='center', va='bottom', fontsize=14)
 
         plt.title('Image Count Distribution by Class', fontsize=16)
-        plt.xlabel('Class Name', fontsize=12)
-        plt.ylabel('Number of Images', fontsize=12)
+        plt.xlabel('Class Name', fontsize=16)
+        plt.ylabel('Number of Images', fontsize=16)
         plt.xticks(rotation=45, ha='right')
         plt.grid(axis='y', linestyle='--', alpha=0.7)
         plt.tight_layout()

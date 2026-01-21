@@ -13,30 +13,37 @@ class DataPreprocessing:
         self.mean=0
         self.std=0
 
-    def calculate_mean_and_std(self,DATASET_DIR=None,grayscale=1):
-        count=0
+    def calculate_mean_and_std(self, DATASET_DIR=None, grayscale=1):
         if DATASET_DIR is None:
-            DATASET_DIR=self.root_dir
+            DATASET_DIR = self.root_dir
 
-        transforms = [v2.ToImage()]
+        transforms_list = [v2.ToImage()]
         if grayscale == 1:
-            transforms.append(v2.Grayscale(num_output_channels=1))
-        transforms.append(v2.ToDtype(torch.float32, scale=True))
+            transforms_list.append(v2.Grayscale(num_output_channels=1))
+        transforms_list.append(v2.ToDtype(torch.float32, scale=True))
+        
+        transformation = v2.Compose(transforms_list)
+        dataset = ImageFolder(DATASET_DIR, transform=transformation)
+        loader = DataLoader(dataset, batch_size=512, shuffle=False, num_workers=4)
 
-        initial_transformation = v2.Compose(transforms)
+        channels = 1 if grayscale == 1 else 3
+        sum_ = torch.zeros(channels)
+        sum_sq = torch.zeros(channels)
+        count = 0
 
-        dataset=ImageFolder(DATASET_DIR,transform=initial_transformation)
-        loader=DataLoader(dataset,batch_size=512,shuffle=False)
+        for images, _ in loader:
+            #images shape: [batch, channels, height, width]
+            batch_size = images.size(0)
+            sum_ += images.mean(dim=[0, 2, 3]) * batch_size
+            sum_sq += (images ** 2).mean(dim=[0, 2, 3]) * batch_size 
+            count += batch_size
 
-        for images,_ in loader:
-            batch_size=images.size(0)
-            self.mean = self.mean+images.mean(dim=[0,2,3])*batch_size
-            self.std = self.std+images.std(dim=[0,2,3])*batch_size
-            count=count+batch_size
+        total_mean = sum_ / count
+        total_var = (sum_sq / count) - (total_mean ** 2)
+        total_std = torch.sqrt(total_var)
 
-        self.mean = self.mean/count
-        self.std=self.std/count
-        return self.mean,self.std
+        self.mean, self.std = total_mean, total_std
+        return self.mean, self.std
 
     def augment_and_transform_data(self,DATASET_DIR=None,grayscale=1, list_of_transform_pipeline=[],mean=None,std=None, plot_original_vs_augmented = 1,num_examples=5):
         if DATASET_DIR is None:
