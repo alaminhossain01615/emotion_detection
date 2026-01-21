@@ -67,7 +67,8 @@ class ImageDatasetExplorer:
         plt.title('Image Count Distribution by Class', fontsize=16)
         plt.xlabel('Class Name', fontsize=16)
         plt.ylabel('Number of Images', fontsize=16)
-        plt.xticks(rotation=45, ha='right')
+        plt.xticks(rotation=45, ha='right', fontsize=14)
+        plt.yticks(fontsize=14)
         plt.grid(axis='y', linestyle='--', alpha=0.7)
         plt.tight_layout()
 
