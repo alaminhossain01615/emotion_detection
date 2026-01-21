@@ -105,7 +105,7 @@ class ImageDatasetExplorer:
             img=Image.open(image_path).convert("RGB")
             sp = plt.subplot(grid_rows,grid_cols,i+1)
             sp.imshow(img)
-            sp.set_title(class_name, fontsize=12)
+            sp.set_title(class_name, fontsize=16)
             sp.axis("off")
 
         plt.show()
