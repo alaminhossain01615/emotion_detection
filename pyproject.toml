@@ -1,0 +1,28 @@
+[build-system]
+#telling what tools are needed to install
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "emotion_detection"
+version = "1.0.0"
+dependencies = [
+    "opencv-python",
+    "mtcnn",
+    "numpy",
+    "Pillow",
+    "matplotlib",
+    "seaborn",
+    "scikit-learn",
+    "ipykernel",
+    "jupyter"
+]
+
+[tool.setuptools]
+#the root of your project so that 'src' is recognizable
+package-dir = {"" = "."}
+
+[tool.setuptools.packages.find]
+where = ["."]
+#to treat the 'src' folder as a package/library
+include = ["src*"]
